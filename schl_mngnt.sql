@@ -69,4 +69,6 @@ INSERT INTO software_engineering_students VALUES
 
 SELECT * FROM software_engineering_students;
 
-DELETE FROM software_engineering_students;
+DELETE FROM software_engineering_students
+WHERE id = 5
+;
