@@ -67,13 +67,35 @@ INSERT INTO software_engineering_students VALUES
 (6, "Samuel Otieno", "samuel.otieno@student.moringaschool.com", "G306", "FrontEnd", "REACT", "Active", "Available", "2023-09-04")
 ;
 
+-- R SE --
 SELECT * FROM software_engineering_students;
 
 SELECT * FROM software_engineering_students
 WHERE major = "FrontEnd"
-ORDER BY id ASC
+ORDER BY id DESC
 LIMIT 5;
+
+-- U SE --
+UPDATE software_engineering_students
+SET major = "FE"
+WHERE major = "FrontEnd";
+
+-- D SE --
+DELETE FROM software_engineering_students;
 
 DELETE FROM software_engineering_students
 WHERE id = 5
 ;
+
+-- I CS --
+INSERT INTO cybersecurity_students VALUES
+(1, "Nathan Kiprotich", "nathan.kiprotich@student.moringaschool.com", "G301", "FrontEnd", "REACT", "Active", "Available", "2023-09-04"),
+(2, "Beatrice Mwenje", "beatrice.mwenje@student.moringaschool.com", "G302", "FullStack", "PHP", "Active", "Available", "2023-09-04"),
+(3, "Kibet Nathan", "kibet.nathan@student.moringaschool.com", "G303", "BackEnd", "SQL", "Active", "Available", "2023-09-04"),
+(4, "Linder Opondo", "linder.opondo@student.moringaschool.com", "G304", "FullStack", "PYTHON", "Active", "Available", "2023-09-04"),
+(5, "Gad Ongoro", "gad.ongoro@student.moringaschool.com", "G305", "FullStack", "C", "Active", "Available", "2023-09-04"),
+(6, "Samuel Otieno", "samuel.otieno@student.moringaschool.com", "G306", "FrontEnd", "REACT", "Active", "Available", "2023-09-04")
+;
+SELECT * FROM cybersecurity_students;
+
+-- I UI/UX --
