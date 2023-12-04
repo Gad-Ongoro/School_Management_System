@@ -69,6 +69,11 @@ INSERT INTO software_engineering_students VALUES
 
 SELECT * FROM software_engineering_students;
 
+SELECT * FROM software_engineering_students
+WHERE major = "FrontEnd"
+ORDER BY id ASC
+LIMIT 5;
+
 DELETE FROM software_engineering_students
 WHERE id = 5
 ;
