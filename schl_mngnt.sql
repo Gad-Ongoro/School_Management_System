@@ -1,13 +1,35 @@
+-- TABLES --
 -- Software Engineering (SE)
 -- Data Science
 -- Cybersecurity (CS)
 -- Product Design (UI/UX)
 -- DevOps Engineering
 -- Data Visualization with Python
+-- Supervisor (sup)
+-- Courses (crs)
 
--- C R U D
+-- ~ C R U D
+
+CREATE DATABASE school_management_system;
+
+USE DATABASE school_management_system;
 
 SHOW TABLES;
+
+-- C crs --
+CREATE TABLE courses(
+    course_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    duration VARCHAR(50)
+);
+
+-- C sup --
+CREATE TABLE supervisors(
+    sup_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    major VARCHAR(50)
+);
 
 -- C SE --
 CREATE TABLE software_engineering_students(
@@ -55,8 +77,22 @@ CREATE TABLE ui_ux_students(
 
 SHOW TABLES;
 
+-- ALTER -- 
+-- ALTER TABLE courses ADD FOREIGN KEY (sup_id) REFERENCES supervisors(sup_id) ON DELETE SET NULL;
+-- ALTER TABLE cybersecurity_students ADD FOREIGN KEY (sup_id) REFERENCES supervisors (sup_id) ON DELETE SET NULL;
+-- ALTER TABLE software_engineering_students ADD FOREIGN KEY (sup_id) REFERENCES supervisors (sup_id) ON DELETE SET NULL;
+-- ALTER TABLE ui_ux_students ADD FOREIGN KEY (sup_id) REFERENCES supervisors (sup_id) ON DELETE SET NULL;
+
 
 -- INSERT (I)
+-- I sup --
+INSERT INTO supervisors
+VALUES
+(1, "Khalifa Muyideen", "kmuyideen@outlook.com", "FullStack"),
+(2, "Abdi Rashid", "abdulrashid@gmail.com", "FrontEnd")
+;
+SELECT * FROM supervisors;
+
 -- I SE --
 INSERT INTO software_engineering_students VALUES
 (1, "Nathan Kiprotich", "nathan.kiprotich@student.moringaschool.com", "G301", "FrontEnd", "REACT", "Active", "Available", "2023-09-04"),
@@ -99,3 +135,16 @@ INSERT INTO cybersecurity_students VALUES
 SELECT * FROM cybersecurity_students;
 
 -- I UI/UX --
+
+-- RESET DB TO DEFAULT -- 
+SHOW TABLES;
+
+DROP TABLE cybersecurity_students;
+
+DROP TABLE software_engineering_students;
+
+DROP TABLE supervisors;
+
+DROP TABLE ui_ux_students;
+
+DROP TABLE courses;
