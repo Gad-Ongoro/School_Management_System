@@ -94,7 +94,7 @@ INSERT INTO supervisors
 VALUES
 (1001, "Abdi Rashid", "abdulrashid@gmail.com", "FrontEnd"),
 (1002, "Sean Newton", "seannewton@gmail.com", "BackEnd"),
-(1003, "Khalifa Muyideen", "kmuyideen@outlook.com", "FullStack"),
+(1003, "Khalifa Muyideen", "kmuyideen@outlook.com", "FullStack")
 ;
 SELECT * FROM supervisors;
 
