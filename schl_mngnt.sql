@@ -147,12 +147,12 @@ SELECT * FROM cybersecurity_students;
 -- RESET DB TO DEFAULT -- 
 SHOW TABLES;
 
+DROP TABLE courses;
+
 DROP TABLE cybersecurity_students;
 
 DROP TABLE software_engineering_students;
 
-DROP TABLE supervisors;
-
 DROP TABLE ui_ux_students;
 
-DROP TABLE courses;
+DROP TABLE supervisors;
