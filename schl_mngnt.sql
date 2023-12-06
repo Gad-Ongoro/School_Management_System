@@ -1,14 +1,16 @@
 -- TABLES --
--- Software Engineering (SE)
--- Data Science
--- Cybersecurity (CS)
--- Product Design (UI/UX)
--- DevOps Engineering
--- Data Visualization with Python
+-- Courses (courses)
+-- Phases (phases)
+-- Students (stud)
 -- Supervisor (sup)
--- Courses (crs)
+-- ~ Software Engineering
+-- ~ Data Science 
+-- ~ Cybersecurity
+-- ~ Product Design
+-- ~ DevOps Engineering
+-- ~ Data Visualization with Python
 
--- ~ C R U D
+-- C R U D
 
 -- CREATE DATABASE school_management_system;
 
@@ -16,7 +18,7 @@
 
 SHOW TABLES;
 
--- C crs --
+-- C courses --
 CREATE TABLE courses(
     course_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50),
@@ -25,6 +27,12 @@ CREATE TABLE courses(
 );
 DESCRIBE courses;
 
+CREATE TABLE phases(
+    phase_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(20),
+    sup_id INT
+);
+
 -- C sup --
 CREATE TABLE supervisors(
     sup_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,61 +40,32 @@ CREATE TABLE supervisors(
     email VARCHAR(100),
     major VARCHAR(50)
 );
+DESCRIBE supervisors;
 
--- C SE --
-CREATE TABLE software_engineering_students(
+-- C stud --
+CREATE TABLE students(
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
     email VARCHAR(100),
     reg_id VARCHAR(100),
     major VARCHAR(100),
-    languages VARCHAR(100),
     status VARCHAR(100),
+    phase VARCHAR(20),
     work_availability VARCHAR(100),
     sup_id INT
 );
+DESCRIBE students;
 
 -- add column --
-ALTER TABLE software_engineering_students ADD date_started DATE;
+ALTER TABLE students ADD date_started DATE;
 
-DESCRIBE software_engineering_students;
-
--- C CS --
-CREATE TABLE cybersecurity_students(
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    email VARCHAR(100),
-    reg_id VARCHAR(100),
-    major VARCHAR(100),
-    languages VARCHAR(100),
-    status VARCHAR(100),
-    work_availability VARCHAR(100),
-    date_started DATE,
-    sup_id INT
-);
-
--- C UI/UX --
-CREATE TABLE ui_ux_students(
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    email VARCHAR(100),
-    reg_id VARCHAR(100),
-    major VARCHAR(100),
-    languages VARCHAR(100),
-    status VARCHAR(100),
-    work_availability VARCHAR(100),
-    date_started DATE,
-    sup_id INT
-);
+DESCRIBE students;
 
 SHOW TABLES;
 
 -- ALTER -- 
 ALTER TABLE courses ADD FOREIGN KEY (sup_id) REFERENCES supervisors(sup_id) ON DELETE SET NULL;
-ALTER TABLE cybersecurity_students ADD FOREIGN KEY (sup_id) REFERENCES supervisors (sup_id) ON DELETE SET NULL;
-ALTER TABLE software_engineering_students ADD FOREIGN KEY (sup_id) REFERENCES supervisors (sup_id) ON DELETE SET NULL;
-ALTER TABLE ui_ux_students ADD FOREIGN KEY (sup_id) REFERENCES supervisors (sup_id) ON DELETE SET NULL;
-
+ALTER TABLE students ADD FOREIGN KEY (sup_id) REFERENCES supervisors (sup_id) ON DELETE SET NULL;
 
 -- INSERT (I)
 -- I sup --
@@ -94,65 +73,60 @@ INSERT INTO supervisors
 VALUES
 (1001, "Abdi Rashid", "abdulrashid@gmail.com", "FrontEnd"),
 (1002, "Sean Newton", "seannewton@gmail.com", "BackEnd"),
-(1003, "Khalifa Muyideen", "kmuyideen@outlook.com", "FullStack")
+(1003, "Khalifa Muyideen", "kmuyideen@outlook.com", "FullStack"),
+(1004, "David Kingston", "davidkings@gmail.com", "Data Science"),
+(1005, "Emma Maart", "emmamaart@outlook.com", "DevOps Engineering")
 ;
 SELECT * FROM supervisors;
 
+DELETE FROM supervisors WHERE sup_id = 1003;
+
 -- I SE --
-DESCRIBE software_engineering_students;
-INSERT INTO software_engineering_students VALUES
-(1, "Nathan Kiprotich", "nathan.kiprotich@student.moringaschool.com", "G301", "FrontEnd", "REACT", "Active", "Available", 1001, "2023-09-04"),
-(2, "Beatrice Mwenje", "beatrice.mwenje@student.moringaschool.com", "G302", "FullStack", "PHP", "Active", "Available", 1003, "2023-09-04"),
-(3, "Kibet Nathan", "kibet.nathan@student.moringaschool.com", "G303", "BackEnd", "SQL", "Active", "Available", 1002, "2023-09-04"),
-(4, "Linder Opondo", "linder.opondo@student.moringaschool.com", "G304", "FullStack", "PYTHON", "Active", "Available", 1003, "2023-09-04"),
-(5, "Gad Ongoro", "gad.ongoro@student.moringaschool.com", "G305", "FullStack", "C", "Active", "Available", 1003, "2023-09-04"),
-(6, "Samuel Otieno", "samuel.otieno@student.moringaschool.com", "G306", "FrontEnd", "REACT", "Active", "Available", 1001, "2023-09-04")
+DESCRIBE students;
+INSERT INTO students VALUES
+(1, "Nathan Kiprotich", "nathan.kiprotich@student.moringaschool.com", "G301", "FrontEnd", "Active", "Phase-3", "Available", 1001, "2023-09-04"),
+(2, "Beatrice Mwenje", "beatrice.mwenje@student.moringaschool.com", "G302", "FullStack",  "Active", "Phase-3", "Available", 1003, "2023-09-04"),
+(3, "Kibet Nathan", "kibet.nathan@student.moringaschool.com", "G303", "BackEnd", "Active", "Phase-3", "Available", 1002, "2023-09-04"),
+(4, "Linder Opondo", "linder.opondo@student.moringaschool.com", "G304", "FullStack", "Active", "Phase-3", "Available", 1003, "2023-09-04"),
+(5, "Gad Ongoro", "gad.ongoro@student.moringaschool.com", "G305", "FullStack", "Active", "Phase-3", "Available", 1003, "2023-09-04"),
+(6, "Samuel Otieno", "samuel.otieno@student.moringaschool.com", "G306", "FrontEnd", "Active", "Phase-3", "Available", 1001, "2023-09-04")
 ;
 
--- R SE --
-SELECT * FROM software_engineering_students;
+-- R stud --
+SELECT * FROM students;
 
-SELECT * FROM software_engineering_students
+SELECT * FROM students
 WHERE major = "FrontEnd"
 ORDER BY id DESC
 LIMIT 5;
 
--- U SE --
-UPDATE software_engineering_students
+-- U stud --
+UPDATE students
 SET major = "FE"
 WHERE major = "FrontEnd";
 
-SELECT * FROM software_engineering_students;
+SELECT * FROM students;
 
--- D SE --
-DELETE FROM software_engineering_students WHERE id = 5;
+-- D stud --
+DELETE FROM students WHERE id = 5;
 
-DELETE FROM software_engineering_students;
+DELETE FROM students;
 
-SELECT * FROM software_engineering_students;
+SELECT * FROM students;
 
--- I CS --
-INSERT INTO cybersecurity_students VALUES
-(1, "Nathan Kiprotich", "nathan.kiprotich@student.moringaschool.com", "G301", "FrontEnd", "REACT", "Active", "Available", "2023-09-04", 1001),
-(2, "Beatrice Mwenje", "beatrice.mwenje@student.moringaschool.com", "G302", "FullStack", "PHP", "Active", "Available", "2023-09-04", 1003),
-(3, "Kibet Nathan", "kibet.nathan@student.moringaschool.com", "G303", "BackEnd", "SQL", "Active", "Available", "2023-09-04", 1002),
-(4, "Linder Opondo", "linder.opondo@student.moringaschool.com", "G304", "FullStack", "PYTHON", "Active", "Available", "2023-09-04", 1003),
-(5, "Gad Ongoro", "gad.ongoro@student.moringaschool.com", "G305", "FullStack", "C", "Active", "Available", "2023-09-04", 1003),
-(6, "Samuel Otieno", "samuel.otieno@student.moringaschool.com", "G306", "FrontEnd", "REACT", "Active", "Available", "2023-09-04", 1001)
-;
-SELECT * FROM cybersecurity_students;
+-- JOIN --
+SELECT stud.name AS stud_name, sup.name AS sup_name
+FROM students AS stud
+RIGHT JOIN supervisors AS sup ON stud.sup_id = sup.sup_id;
 
--- I UI/UX --
 
 -- RESET DB TO DEFAULT -- 
 SHOW TABLES;
 
 DROP TABLE courses;
 
-DROP TABLE cybersecurity_students;
+DROP TABLE students;
 
-DROP TABLE software_engineering_students;
-
-DROP TABLE ui_ux_students;
+DROP TABLE phases;
 
 DROP TABLE supervisors;
