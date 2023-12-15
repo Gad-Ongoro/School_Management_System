@@ -1,14 +1,12 @@
-from faker import Faker
-import random
 from sqlalchemy.orm import sessionmaker
-from models import engine, Student, Supervisor, Course, Phase
+from models import engine, Supervisor
 import click
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
 @click.command()
-@click.option("--count", default=1)
+@click.option("--count", default=2)
 @click.option("--super_id", prompt="ID", type=int)
 @click.option("--super_name", prompt="Name")
 @click.option("--super_email", prompt="Email")
