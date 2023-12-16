@@ -11,7 +11,12 @@ class Phase(Base):
     name = Column(String(50))
     sup_id = Column(Integer())
 
-    students = relationship("Student", backref="phase")
+    students = relationship("Student", backref=("phase"))
+
+    def __repr__(self):
+        return(
+            f"{self.name}"
+        )
 
 class Course(Base):
     __tablename__ = "courses"
@@ -23,6 +28,11 @@ class Course(Base):
     students = relationship("Student", backref=("course"))
     #duration = Column(String(50))
 
+    def __repr__(self):
+        return(
+            f"Course Name: {self.name}"
+        )
+
 class Supervisor(Base):
     __tablename__ = "supervisors"
 
@@ -33,6 +43,12 @@ class Supervisor(Base):
 
     students = relationship('Student', backref=('supervisor'))
 
+    def __repr__(self):
+        return(
+            f"{self.name} ({self.major})"
+        )
+        pass
+
 class Student(Base):
     __tablename__ = "students"
 
@@ -42,8 +58,14 @@ class Student(Base):
     reg_id = Column(String(50))
     status = Column(String(50))
     course_id = Column(Integer(), ForeignKey("courses.course_id"))
-    phase = Column(Integer(), ForeignKey("phases.phase_id"))
+    phase_id = Column(Integer(), ForeignKey("phases.phase_id"))
     sup_id = Column(Integer(), ForeignKey('supervisors.sup_id'))
+
+    def __repr__(self):
+        return(
+            f"{self.name} ({self.reg_id})"
+        )
+        pass
 
 engine = create_engine('sqlite:///school_management.db')
 Base.metadata.create_all(engine)

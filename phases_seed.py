@@ -1,10 +1,10 @@
 from sqlalchemy.orm import sessionmaker
-from models import engine, Course
+from models import engine, Phase
 import click
 
 @click.command()
 @click.option("--count", default=1)
-@click.option("--name", prompt="Name")
+@click.option("--name", prompt="Phase Name")
 @click.option("--sup_id", prompt="Supervisor ID")
 
 def phase_handler(count, name, sup_id):
@@ -16,9 +16,9 @@ def phase_handler(count, name, sup_id):
         course = {"Phase Name": name, "Supervisor ID": sup_id}
         print(course)
 
-        new_course = Course(name =  name, sup_id = sup_id)
+        new_phase = Phase(name =  name, sup_id = sup_id)
 
-        session.add(new_course)
+        session.add(new_phase)
         session.commit()
         
 

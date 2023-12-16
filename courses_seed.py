@@ -28,5 +28,12 @@ if __name__ == '__main__':
     course_handler()
     pass
 
+course_1 = Course(name = "Software Engineering", sup_id = 1)
+course_2 = Course(name = "Product Design", sup_id = 1)
+course_3 = Course(name = "Data Science", sup_id = 1)
+course_4 = Course(name = "Data Visualization with Python", sup_id = 1)
+course_5 = Course(name = "DevOps Engineering", sup_id = 1)
+course_6 = Course(name = "Cybersecurity", sup_id = 1)
+
 # session.add_all([supervisor1, supervisor2])
 # session.commit()

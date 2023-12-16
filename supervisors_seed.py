@@ -4,7 +4,7 @@ import click
 
 @click.command()
 @click.option("--count", default=1)
-@click.option("--super_id", prompt="ID", type=int)
+@click.option("--super_id", prompt="Supervisor ID", type=int)
 @click.option("--super_name", prompt="Name")
 @click.option("--super_email", prompt="Email")
 @click.option("--super_major", prompt="Major")
@@ -30,8 +30,10 @@ if __name__ == '__main__':
     supervisor_handler()
     pass
 
-supervisor1 = Supervisor(sup_id = 1, name="Khalifa", email="kmuyeeden@gmail.com", major="Software Engineering")
-supervisor2 = Supervisor(sup_id = 2, name="Abdul", email="abdul@gmail.com", major="Science")
+supervisor1 = Supervisor(sup_id = 1000, name="Khalifa Muyideen", email="kmuyideen@outlook.com", major="Software Engineering")
+supervisor2 = Supervisor(sup_id = 1001, name="Abdi Rashid", email="abdulrashid@gmail.com", major="Product Design")
+supervisor3 = Supervisor(sup_id = 1002, name="Sean Newton", email="seannewton@gmail.com", major="Data Science")
+supervisor4 = Supervisor(sup_id = 1003, name="Emma Maart", email="emmamaart@outlook.com", major="Cybersecurity")
 
 # session.add_all([supervisor1, supervisor2])
 # session.commit()
