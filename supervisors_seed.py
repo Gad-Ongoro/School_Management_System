@@ -2,11 +2,8 @@ from sqlalchemy.orm import sessionmaker
 from models import engine, Supervisor
 import click
 
-Session = sessionmaker(bind=engine)
-session = Session()
-
 @click.command()
-@click.option("--count", default=2)
+@click.option("--count", default=1)
 @click.option("--super_id", prompt="ID", type=int)
 @click.option("--super_name", prompt="Name")
 @click.option("--super_email", prompt="Email")
@@ -28,6 +25,8 @@ def supervisor_handler(count, super_id, super_name, super_email, super_major):
         
 
 if __name__ == '__main__':
+    Session = sessionmaker(bind=engine)
+    session = Session()
     supervisor_handler()
     pass
 
