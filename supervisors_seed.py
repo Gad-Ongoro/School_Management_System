@@ -35,5 +35,5 @@ supervisor2 = Supervisor(sup_id = 1001, name="Abdi Rashid", email="abdulrashid@g
 supervisor3 = Supervisor(sup_id = 1002, name="Sean Newton", email="seannewton@gmail.com", major="Data Science")
 supervisor4 = Supervisor(sup_id = 1003, name="Emma Maart", email="emmamaart@outlook.com", major="Cybersecurity")
 
-# session.add_all([supervisor1, supervisor2])
+session.add_all([supervisor1, supervisor2, supervisor3, supervisor4])
 # session.commit()
