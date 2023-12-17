@@ -35,5 +35,5 @@ course_4 = Course(name = "Data Visualization with Python", sup_id = 1)
 course_5 = Course(name = "DevOps Engineering", sup_id = 1)
 course_6 = Course(name = "Cybersecurity", sup_id = 1)
 
-# session.add_all([supervisor1, supervisor2])
+# session.add_all([course_1, course_2, course_3, course_4, course_5, course_6])
 # session.commit()
