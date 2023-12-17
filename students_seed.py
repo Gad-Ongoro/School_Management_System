@@ -1,6 +1,9 @@
 from sqlalchemy.orm import sessionmaker
 from models import engine, Student
 import click
+from faker import Faker
+
+faker = Faker()
 
 @click.command()
 @click.option("--count", default=1)
@@ -29,5 +32,10 @@ if __name__ == '__main__':
     supervisor_handler()
     pass
 
-# session.add_all([supervisor1, supervisor2])
+student_1 = Student(name = faker.name(), email = faker.email(), reg_id = "G301", status = "Active", phase_id = 104, sup_id = 1000, course_id = 1)
+student_2 = Student(name = faker.name(), email = faker.email(), reg_id = "G302", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
+student_3 = Student(name = faker.name(), email = faker.email(), reg_id = "G303", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
+student_4 = Student(name = faker.name(), email = faker.email(), reg_id = "G304", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
+student_5 = Student(name = faker.name(), email = faker.email(), reg_id = "G305", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
+session.add_all([student_1, student_2, student_3, student_4, student_5])
 # session.commit()
