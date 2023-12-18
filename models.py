@@ -9,7 +9,7 @@ class Phase(Base):
 
     phase_id = Column(Integer(), primary_key=True, autoincrement=True)
     name = Column(String(50))
-    sup_id = Column(Integer())
+    sup_id = Column(Integer(), ForeignKey("supervisors.sup_id"))
 
     students = relationship("Student", backref=("phase"))
 
@@ -42,6 +42,7 @@ class Supervisor(Base):
     major = Column(String(50))
 
     students = relationship('Student', backref=('supervisor'))
+    phases = relationship('Phase', backref="supervisor")
 
     def __repr__(self):
         return(
