@@ -7,7 +7,6 @@ faker = Faker()
 
 @click.command()
 @click.option("--count", default=1)
-# @click.option("--super_id", prompt="ID", type=int)
 @click.option("--name", prompt="Student Name")
 @click.option("--email", prompt="Email")
 @click.option("--reg_id", prompt="Reg_ID")
@@ -16,7 +15,7 @@ faker = Faker()
 @click.option("--sup_id", prompt="Sup_ID", type=int)
 @click.option("--course_id", prompt="Course ID", type=int)
 
-def supervisor_handler(count, name, email, reg_id, status, phase_id, sup_id, course_id):
+def student_handler(count, name, email, reg_id, status, phase_id, sup_id, course_id):
     for _ in range(count):
         stud = {"Name": name, "Email": email, "Reg_id": reg_id, "Status": status, "Phase": phase_id, "Sup_id": sup_id, "Course_id": course_id}
         print(stud)
@@ -29,7 +28,7 @@ def supervisor_handler(count, name, email, reg_id, status, phase_id, sup_id, cou
 if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
-    supervisor_handler()
+    student_handler()
     pass
 
 student_1 = Student(name = faker.name(), email = faker.email(), reg_id = "G301", status = "Active", phase_id = 104, sup_id = 1000, course_id = 1)
@@ -37,5 +36,16 @@ student_2 = Student(name = faker.name(), email = faker.email(), reg_id = "G302",
 student_3 = Student(name = faker.name(), email = faker.email(), reg_id = "G303", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
 student_4 = Student(name = faker.name(), email = faker.email(), reg_id = "G304", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
 student_5 = Student(name = faker.name(), email = faker.email(), reg_id = "G305", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
-session.add_all([student_1, student_2, student_3, student_4, student_5])
+#session.add_all([student_1, student_2, student_3, student_4, student_5])
 # session.commit()
+
+# for student in session.query(Student):
+#     if student.name == "Sean":
+#         student.reg_id = "G300"
+#         student.name = "Sean Newton"    
+# session.commit()
+
+students_list = session.query(Student)
+# print([stud for stud in students_list])
+for stud in students_list:
+    print(stud)
