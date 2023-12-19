@@ -1,6 +1,6 @@
 # go to <phases_seed.py> || <courses_seed.py> || <supervisors_seed.py> || <students_seed.py>
 from faker import Faker
-import random
+
 from sqlalchemy.orm import sessionmaker
 from models import engine, Student, Supervisor, Course, Phase
 import click
