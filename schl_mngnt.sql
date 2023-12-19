@@ -6,7 +6,7 @@
 -- ~ Software Engineering
 -- ~ Data Science 
 -- ~ Cybersecurity
--- ~ Product Design
+-- ~ Product Designs
 -- ~ DevOps Engineering
 -- ~ Data Visualization with Python
 
@@ -16,7 +16,7 @@
 
 -- USE DATABASE school_management_system;
 
-SHOW TABLES;
+-- SHOW TABLES;
 
 -- C courses --
 CREATE TABLE courses(
