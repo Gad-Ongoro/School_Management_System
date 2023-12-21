@@ -69,4 +69,5 @@ class Student(Base):
         pass
 
 engine = create_engine('sqlite:///school_management.db')
+# engine = create_engine('mysql+mysqlconnector://root:{PASSWORD}@localhost:3306/moringa_school_practice', echo = True)
 Base.metadata.create_all(engine)
