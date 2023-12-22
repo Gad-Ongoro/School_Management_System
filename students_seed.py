@@ -5,15 +5,15 @@ from faker import Faker
 
 faker = Faker()
 
-@click.command()
-@click.option("--count", default=1)
-@click.option("--name", prompt="Student Name")
-@click.option("--email", prompt="Email")
-@click.option("--reg_id", prompt="Reg_ID")
-@click.option("--status", prompt="Status")
-@click.option("--phase_id", prompt="Phase ID")
-@click.option("--sup_id", prompt="Sup_ID", type=int)
-@click.option("--course_id", prompt="Course ID", type=int)
+# @click.command()
+# @click.option("--count", default=1)
+# @click.option("--name", prompt="Student Name")
+# @click.option("--email", prompt="Email")
+# @click.option("--reg_id", prompt="Reg_ID")
+# @click.option("--status", prompt="Status")
+# @click.option("--phase_id", prompt="Phase ID")
+# @click.option("--sup_id", prompt="Sup_ID", type=int)
+# @click.option("--course_id", prompt="Course ID", type=int)
 
 def student_handler(count, name, email, reg_id, status, phase_id, sup_id, course_id):
     for _ in range(count):
@@ -28,24 +28,56 @@ def student_handler(count, name, email, reg_id, status, phase_id, sup_id, course
 if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
-    student_handler()
+    # student_handler()
     pass
 
+""" CREATE """
+# filling DB with initial set of data
 student_1 = Student(name = faker.name(), email = faker.email(), reg_id = "G301", status = "Active", phase_id = 104, sup_id = 1000, course_id = 1)
-student_2 = Student(name = faker.name(), email = faker.email(), reg_id = "G302", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
+student_2 = Student(name = faker.name(), email = faker.email(), reg_id = "G302", status = "Inactive", phase_id = 105, sup_id = 1000, course_id = 1)
 student_3 = Student(name = faker.name(), email = faker.email(), reg_id = "G303", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
-student_4 = Student(name = faker.name(), email = faker.email(), reg_id = "G304", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
+student_4 = Student(name = faker.name(), email = faker.email(), reg_id = "G304", status = "Inactive", phase_id = 105, sup_id = 1000, course_id = 1)
 student_5 = Student(name = faker.name(), email = faker.email(), reg_id = "G305", status = "Active", phase_id = 105, sup_id = 1000, course_id = 1)
 #session.add_all([student_1, student_2, student_3, student_4, student_5])
 # session.commit()
 
-# for student in session.query(Student):
+""" READ """
+# students_list = session.query(Student)
+# print([stud for stud in students_list])
+# for stud in students_list:
+#     print(stud)
+
+""" using OOP """
+class student_data_query:
+    def __init__(self):
+        pass
+    
+    # READ
+    def get_all_students_data(self):
+        all_students = session.query(Student).all() #.all() returns a list []
+        for student in all_students:
+            #print(student)   
+            pass     
+        # print(all_students)
+        pass
+    
+    # DELETE
+    def delete_student(self, name):
+        self.name = name
+        for student in session.query(Student).all():
+            if student.name == name:
+                session.delete(student)
+                session.commit()
+    
+studs = student_data_query()
+studs.get_all_students_data()
+
+""" UPDATE """
+# for student in session.query(Student).all(): #working with a list to update student
 #     if student.name == "Sean":
 #         student.reg_id = "G300"
 #         student.name = "Sean Newton"    
 # session.commit()
 
-students_list = session.query(Student)
-# print([stud for stud in students_list])
-for stud in students_list:
-    print(stud)
+""" DELETE """
+studs.delete_student("Sam G")
