@@ -5,7 +5,8 @@ from faker import Faker
 
 faker = Faker()
 
-# @click.command()
+""" Using click CLI Library to get and map user input to the DataBase """
+@click.command()
 # @click.option("--count", default=1)
 # @click.option("--name", prompt="Student Name")
 # @click.option("--email", prompt="Email")
@@ -52,14 +53,27 @@ class student_data_query:
     def __init__(self):
         pass
     
+    # CREATE    
+    def add_new_student(self, name, email, reg_id, status, phase_id, sup_id, course_id):
+        new_student = Student(name = name, email = email, reg_id = reg_id, status = status, phase_id = phase_id, sup_id = sup_id, course_id = course_id)
+        session.add(new_student)
+        session.commit()
+    
     # READ
     def get_all_students_data(self):
         all_students = session.query(Student).all() #.all() returns a list []
         for student in all_students:
-            #print(student)   
+            print(student)   
             pass     
         # print(all_students)
         pass
+    
+    # UPDATE
+    def update_student_data(self, id:int, new_status):
+        for student in session.query(Student).all(): #using a list to update student
+            if student.stud_id == id:
+                student.status = new_status
+        session.commit()
     
     # DELETE
     def delete_student(self, name):
@@ -70,14 +84,15 @@ class student_data_query:
                 session.commit()
     
 studs = student_data_query()
+
+""" CREATE """
+studs.add_new_student(faker.name(), faker.email(), "G105", status = "Active", phase_id = 105, sup_id = 1002, course_id = 2)
+
+""" READ """
 studs.get_all_students_data()
 
 """ UPDATE """
-# for student in session.query(Student).all(): #working with a list to update student
-#     if student.name == "Sean":
-#         student.reg_id = "G300"
-#         student.name = "Sean Newton"    
-# session.commit()
+studs.update_student_data(5, "Inactive")
 
 """ DELETE """
 studs.delete_student("Sam G")
