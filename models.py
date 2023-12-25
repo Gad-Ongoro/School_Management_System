@@ -30,7 +30,7 @@ class Course(Base):
 
     def __repr__(self):
         return(
-            f"Course Name: {self.name}"
+            f"Course Name: {self.name} || Sup_ID: {self.sup_id}"
         )
 
 class Supervisor(Base):
@@ -68,6 +68,7 @@ class Student(Base):
         )
         pass
 
-engine = create_engine('sqlite:///school_management.db')
-# engine = create_engine('mysql+mysqlconnector://root:{PASSWORD}@localhost:3306/moringa_school_practice', echo = True)
-Base.metadata.create_all(engine)
+if __name__ == "__main__":
+    engine = create_engine('sqlite:///school_management.db')
+    # engine = create_engine('mysql+mysqlconnector://root:{PASSWORD}@localhost:3306/moringa_school_practice', echo = True)
+    Base.metadata.create_all(engine)
