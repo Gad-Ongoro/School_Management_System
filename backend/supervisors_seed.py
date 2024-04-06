@@ -1,5 +1,5 @@
 from sqlalchemy.orm import sessionmaker
-from models import engine, Supervisor
+from backend.models import engine, Supervisor
 import click
 from faker import Faker
 

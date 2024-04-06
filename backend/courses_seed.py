@@ -1,5 +1,5 @@
 from sqlalchemy.orm import sessionmaker
-from models import engine, Course
+from backend.models import engine, Course
 import click
 
 """ Using click CLI Library to get and map user input to the DataBase """

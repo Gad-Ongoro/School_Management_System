@@ -1,5 +1,5 @@
 from sqlalchemy.orm import sessionmaker
-from models import engine, Student
+from backend.models import engine, Student
 import click
 from faker import Faker
 

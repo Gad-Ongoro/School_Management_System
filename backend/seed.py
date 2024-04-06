@@ -2,7 +2,7 @@
 from faker import Faker
 
 from sqlalchemy.orm import sessionmaker
-from models import engine, Student, Supervisor, Course, Phase
+from backend.models import engine, Student, Supervisor, Course, Phase
 import click
 
 faker = Faker()
